@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="SfDataGridDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SfDataGridDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <local:ViewModel />
+    </Page.DataContext>  
+      
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <syncfusion:SfDataGrid x:Name="dataGrid"
+                               AutoGenerateColumns="False"  
+                               ColumnSizer="Star"
+                               IndentColumnWidth="0"                                                              
+                               ItemsSource="{Binding Orders}"                               
+                               ShowGroupDropArea="True">
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription ColumnName="OrderID" />
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn MappingName="OrderID" HeaderText="Order ID" />
+                <syncfusion:GridTextColumn MappingName="CustomerID" HeaderText="Customer ID"  />                
+                <syncfusion:GridTextColumn MappingName="CustomerName" HeaderText="Customer Name"  />
+                <syncfusion:GridTextColumn MappingName="ProductName" HeaderText="Product Name" />              
+                <syncfusion:GridNumericColumn MappingName="UnitPrice" HeaderText="Unit Price" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+        <StackPanel Grid.Column="1">
+            <Button Click="Button_Click"  Content="PrintPreview" Height="50" Width="150"/>
+        </StackPanel>
+    </Grid>
+</Page>
